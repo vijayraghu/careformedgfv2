@@ -244,8 +244,7 @@ def dialogflow_text_to_intent(project_id, call_id, input_text, lang_code):
 		except:
 			emp_id= ""	
 		try:
-			output_text = response.query_result.fulfillment_text
-			output_text = output_text.decode('utf-8')
+			output_text = response.query_result.fulfillment_text.encode('utf-8')
 			print 'output: ' + output_text
 		except:
 			output_text = ""
