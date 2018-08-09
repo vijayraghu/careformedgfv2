@@ -360,6 +360,18 @@ def processRequest(req):
 		else:
 			employee_name = get_employee_name(emp_id)
 			fulfillmentText = 'Thanks ' + employee_name + ' for providing your employee number. Now how can we help you today?'
+	
+	# Process employee number again upon user request to give employee number again
+	if intentname == 'get_employee_number_cartwright-again':
+		if (str(int(emp_id))[:2]) != '10':
+			speech = 'Sorry that still doesn’t not check out. Perhaps you should chat with your manager. Would you like me to transfer you to one of my colleagues in the General Customer Service Team that can help you with your inquiry today.'
+		else:
+			employee_name = get_employee_name(emp_id)
+			speech = 'Thanks ' + employee_name + ' for providing your employee number. Now how can we help you today?'
+	
+	# Transfer to General customer care when user says ok for transfer post unsuccessful employee id check
+	if intentname == 'get_employee_number_cartwright-transfer':
+		speech = 'My colleague in the General Customer Service Team will help you with your inquiry today.'
 
     	# Transfer for Billing_services
     	elif intentname == 'billing_services_cartwright':
@@ -367,6 +379,8 @@ def processRequest(req):
 			fulfillmentText = 'Hmmm! That does not seem to be a valid employee number. Let me transfer you to one of my colleagues in the General Customer Service Team that can help you with your inquiry today.'
 		else:
 			fulfillmentText = 'Ok. Let me transfer you to one of my colleagues that can help you with your Billing inquiry'
+	
+	
 	
     	# Transfer for Sales_services   
     	elif intentname == 'sales_services_cartwright':
