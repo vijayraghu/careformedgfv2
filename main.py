@@ -145,13 +145,18 @@ def process_speech():
 			#print 'reached default intent. Transfering...'
 			#resp.dial('+61280490603')
 			#resp.redirect('/process_close')
+			
+		# Transfer to General services if user says ok after invalid employee number check to get transfered at Billing, Sales and Tech services
+		if intent_name in ['billing_services_cartwright-transfer','sales_services_cartwright-transfer','tech_services_cartwright-transfer','get_employee_number_cartwright-transfer']:
+			resp.dial('+61450178418')
+			resp.redirect('/process_close')		
 		
-		# Perform employee number validation
-		if intent_name == 'get_employee_number_cartwright':
+		# Perform employee number validation (******Changed as per new flow which included follow-up intents*******)
+		#if intent_name == 'get_employee_number_cartwright':
 			#Validate employee number
-			if (str(int(emp_id))[:2]) != '10':
-				resp.dial('+61450178418')
-				resp.redirect('/process_close')
+			#if (str(int(emp_id))[:2]) != '10':
+				#resp.dial('+61450178418')
+				#resp.redirect('/process_close')
 		
 		# Transfer to routepoint based in intent and product	
 		print 'Intent :' + intent_name
@@ -259,7 +264,7 @@ def getroutepoint(intent_name, product_name):
 	phone_number = "+61450178418"
 	
 	# Transfer for Billing_services
-    	if intent_name == 'billing_services_cartwright':
+    	if intent_name in ['billing_services_cartwright','billing_services_cartwright-getempnumber']:
 		if product_name == 'Postpaid':
 			phone_number = "+61421183854"
 		elif product_name == 'Prepaid':
@@ -276,7 +281,7 @@ def getroutepoint(intent_name, product_name):
 			phone_number = "+61421183854"
 					
 	# Transfer for Sales_services
-    	if intent_name == 'sales_services_cartwright':
+    	if intent_name in ['sales_services_cartwright','sales_services_cartwright-getempnumber']:
 		if product_name == 'Postpaid':
 			phone_number = "+61447628852"
 		elif product_name == 'Prepaid':
@@ -293,7 +298,7 @@ def getroutepoint(intent_name, product_name):
 			phone_number = "+61447628852"
 					
 	# Transfer for Tech_services
-	if intent_name == 'tech_services_cartwright':
+	if intent_name in ['tech_services_cartwright','tech_services_cartwright-getempnumber']:
 		if product_name == 'Postpaid':
 			phone_number = "+61421183854"
 		elif product_name == 'Prepaid':
