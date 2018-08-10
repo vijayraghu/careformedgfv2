@@ -389,7 +389,7 @@ def processRequest(req):
 	#Process employee number again upon user request to give employee number again
 	if intentname == 'billing_services_cartwright-getempnumber':
 		if (str(int(emp_id))[:2]) != '10':
-			speech = 'Sorry that still don’t not check out, perhaps you should chat with your manager. Would you like me to transfer you to one of my colleagues in the General Customer Service Team that can help you with your inquiry today.'
+			fulfillmentText = 'Sorry that still don’t not check out, perhaps you should chat with your manager. Would you like me to transfer you to one of my colleagues in the General Customer Service Team that can help you with your inquiry today.'
 		else:
 			employee_name = get_employee_name(emp_id)
 			fulfillmentText = 'Thanks ' + employee_name + ' for providing your employee number. Let me transfer you to one of my colleagues that can help you with your Billing inquiry'
