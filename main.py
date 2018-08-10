@@ -381,7 +381,7 @@ def processRequest(req):
     	# Transfer for Billing_services
     	if intentname == 'billing_services_cartwright':
 		if (str(int(emp_id))[:2]) != '10':
-			fulfillmentText = 'Hmmm! That does not seem to be a valid employee number. Let me transfer you to one of my colleagues in the General Customer Service Team that can help you with your inquiry today.'
+			fulfillmentText = 'Hmmm! That does not seem to be a valid employee number. Care for me is for internal employees only. Would you like me to transfer you to one of my colleagues in the General Customer Service Team that can help you with your inquiry today.'
 		else:
 			employee_name = get_employee_name(emp_id)
 			fulfillmentText = 'Ok ' + employee_name + '. Let me transfer you to one of my colleagues that can help you with your Billing inquiry'
@@ -401,7 +401,7 @@ def processRequest(req):
     	# Transfer for Sales_services   
     	if intentname == 'sales_services_cartwright':
 		if (str(int(emp_id))[:2]) != '10':
-			fulfillmentText = 'Hmmm! That does not seem to be a valid employee number. Let me transfer you to one of my colleagues in the General Customer Service Team that can help you with your inquiry today.'
+			fulfillmentText = 'Hmmm! That does not seem to be a valid employee number. Care for me is for internal employees only. Would you like me to transfer you to one of my colleagues in the General Customer Service Team that can help you with your inquiry today.'
 		else:
 			employee_name = get_employee_name(emp_id)
 			fulfillmentText = 'Ok ' + employee_name + '.Let me transfer you to one of my colleagues that can help you with your Sales inquiry'
@@ -421,7 +421,7 @@ def processRequest(req):
     	# Transfer for Tech_services
     	if intentname == 'tech_services_cartwright':
 		if (str(int(emp_id))[:2]) != '10':
-			fulfillmentText = 'Hmmm! That does not seem to be a valid employee number. Let me transfer you to one of my colleagues in the General Customer Service Team that can help you with your inquiry today.'
+			fulfillmentText = 'Hmmm! That does not seem to be a valid employee number. Care for me is for internal employees only. Would you like me to transfer you to one of my colleagues in the General Customer Service Team that can help you with your inquiry today.'
 		else:
 			employee_name = get_employee_name(emp_id)
 			fulfillmentText = 'Ok ' + employee_name + '.Let me transfer you to one of my colleagues that can help you with your technical inquiry'
