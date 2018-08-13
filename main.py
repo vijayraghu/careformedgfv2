@@ -52,7 +52,7 @@ def welcome():
 		print 'In start: before Google TTS'
 		resp.play(hostname + 'goog_text2speech?' + qs)
 		print 'In start: after Google TTS'
-		resp.dial('+61450178418')
+		resp.dial('+61280490603')
 		return str(resp)
 		
 	else:
@@ -137,7 +137,7 @@ def process_speech():
 		
 		# Transfer to General services if employee number is not provided
     		if intent_name == 'no_employee_number_cartwright':
-			resp.dial('+61450178418', action='/process_hangup', method='GET')
+			resp.dial('+61280490603', action='/process_hangup', method='GET')
 			#resp.redirect('/process_close')
 			
 		# Transfer for default fallback intent (*******To Check with Chris*******)
@@ -148,7 +148,7 @@ def process_speech():
 			
 		# Transfer to General services if user says ok after invalid employee number check to get transfered at Billing, Sales and Tech services
 		if intent_name in ['billing_services_cartwright-transfer','sales_services_cartwright-transfer','tech_services_cartwright-transfer','get_employee_number_cartwright-transfer']:
-			resp.dial('+61450178418')
+			resp.dial('+61280490603')
 			resp.redirect('/process_close')		
 		
 		# Perform employee number validation (******Changed as per new flow which included follow-up intents*******)
@@ -261,58 +261,58 @@ def dialogflow_text_to_intent(project_id, call_id, input_text, lang_code):
 #####
 def getroutepoint(intent_name, product_name):
 	#Catch all exceptions
-	phone_number = "+61450178418"
+	phone_number = "+61280490603"
 	
 	# Transfer for Billing_services
     	if intent_name in ['billing_services_cartwright','billing_services_cartwright-getempnumber']:
 		if product_name == 'Postpaid':
-			phone_number = "+61421183854"
+			phone_number = "+61280490602"
 		elif product_name == 'Prepaid':
-			phone_number = "+61421183854"
+			phone_number = "+61280490602"
 		elif product_name == 'Mobile Broadband':
-			phone_number = "+61421183854"
+			phone_number = "+61280490602"
 		elif product_name == 'Internet':
-			phone_number = "+61421183854"
+			phone_number = "+61280490602"
 		elif product_name == 'Telephony':
-			phone_number = "+61421183854"
+			phone_number = "+61280490602"
 		elif product_name == 'Optus TV':
-			phone_number = "+61421183854"
+			phone_number = "+61280490602"
 		elif product_name == 'Financial Services':
-			phone_number = "+61421183854"
+			phone_number = "+61280490602"
 					
 	# Transfer for Sales_services
     	if intent_name in ['sales_services_cartwright','sales_services_cartwright-getempnumber']:
 		if product_name == 'Postpaid':
-			phone_number = "+61447628852"
+			phone_number = "+61280490601"
 		elif product_name == 'Prepaid':
-			phone_number = "+61447628852"
+			phone_number = "+61280490601"
 		elif product_name == 'Mobile Broadband':
-			phone_number = "+61447628852"
+			phone_number = "+61280490601"
 		elif product_name == 'Internet':
-			phone_number = "+61447628852"
+			phone_number = "+61280490601"
 		elif product_name == 'Telephony':
-			phone_number = "+61447628852"
+			phone_number = "+61280490601"
 		elif product_name == 'Optus TV':
-			phone_number = "+61447628852"
+			phone_number = "+61280490601"
 		elif product_name == 'Financial Services':
-			phone_number = "+61447628852"
+			phone_number = "+61280490601"
 					
 	# Transfer for Tech_services
 	if intent_name in ['tech_services_cartwright','tech_services_cartwright-getempnumber']:
 		if product_name == 'Postpaid':
-			phone_number = "+61421183854"
+			phone_number = "+61280490600"
 		elif product_name == 'Prepaid':
-			phone_number = "+61421183854"
+			phone_number = "+61280490600"
 		elif product_name == 'Mobile Broadband':
-			phone_number = "+61421183854"
+			phone_number = "+61280490600"
 		elif product_name == 'Internet':
-			phone_number = "+61421183854"
+			phone_number = "+61280490600"
 		elif product_name == 'Telephony':
-			phone_number = "+61421183854"
+			phone_number = "+61280490600"
 		elif product_name == 'Optus TV':
-			phone_number = "+61421183854"
+			phone_number = "+61280490600"
 		elif product_name == 'Financial Services':
-			phone_number = "+61421183854"
+			phone_number = "+61280490600"
 	
 	return phone_number
 
