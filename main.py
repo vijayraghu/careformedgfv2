@@ -429,7 +429,8 @@ def get_employee_name(emp_id):
 	print 'Inside Get employee name'
 	print emp_id
 	
-	if(not emp_id.isdigit()):
+	# We want to continue if the emp_id is an integer or a float.
+	if((not isinstance(emp_id, int)) and (not isinstance(emp_id, float))):
 		return ''
 	
 	if str(int(emp_id)) == '1048350':
