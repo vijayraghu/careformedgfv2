@@ -119,7 +119,7 @@ def process_speech():
 	sys.stdout.flush()
 	resp = VoiceResponse()
 	
-	if (confidence >= 0.0):
+	if (confidence >= 0.1):
 		# Step 1: Call Dialogflow for intent analysis
 		intent_name, output_text, product_name, emp_id = dialogflow_text_to_intent(project_id, call_id, input_text, lang_code)
 		
