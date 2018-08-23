@@ -27,7 +27,7 @@ project_id = os.environ["DIALOGFLOW_PROJECT_ID"]
 credentials_dgf = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')
 
 # Setup hints (speech contexts) for better speech recognition in Twilio
-hints = "1,2,3,4,5,6,7,8,9,0, 1 one first, 2 two second, 3 three third, 4 four fourth, 5 five fifth, 6 six sixth, 7 seven seventh, 8 eight eighth,9 nine ninth, 10 ten tenth, 0 zero o, account acount akount, mobile, roaming, top up topup,channels channel,tv TV, broadband broad band, fetch, extension, iphone, cable, recharge, recharging, optus Optus, Hey, EPL, English premier league, streaming, premier league, exit, sales inquiry, billing inquiry, technical inquiry"
+hints = "1,2,3,4,5,6,7,8,9,0, 1 one first, 2 two second, 3 three third, 4 four fourth, 5 five fifth, 6 six sixth, 7 seven seventh, 8 eight eighth,9 nine ninth, 10 ten tenth, 0 zero o, account acount akount, mobile, roaming, top up topup,channels channel,tv TV, broadband broad band, fetch, extension, iphone, cable, recharge, recharging, optus Optus, Hey, EPL, English premier league, streaming, premier league, exit, sales inquiry, billing inquiry, technical inquiry, time, dispute, perks, contract, overdue, iMessage, movie tickets, expensive, understand, bonus, IOU, ownership, relocating, NBN, champions league, europa league, nations league, suck, Netflix, gmail, reboot, activation"
 
 app = Flask(__name__)
 
@@ -147,7 +147,7 @@ def process_speech():
 			#resp.redirect('/process_close')
 			
 		# Transfer to General services if user says ok after invalid employee number check to get transfered at Billing, Sales and Tech services
-		if intent_name in ['billing_services_cartwright-transfer','sales_services_cartwright-transfer','tech_services_cartwright-transfer','get_employee_number_cartwright-transfer']:
+		if intent_name in ['billing_services_cartwright-transfer','sales_services_cartwright-transfer','tech_services_cartwright-transfer','retention_services_cartwright-transfer','relocation_services_cartwright-transfer','get_employee_number_cartwright-transfer']:
 			resp.dial('+61280490603')
 			resp.redirect('/process_close')		
 		
@@ -314,6 +314,40 @@ def getroutepoint(intent_name, product_name):
 		elif product_name == 'Financial Services':
 			phone_number = "+61280490600"
 	
+	# Transfer for retention_services
+	if intent_name in ['retention_services_cartwright','retention_services_cartwright-getempnumber']:
+		if product_name == 'Postpaid':
+			phone_number = "+61280490602"
+		elif product_name == 'Prepaid':
+			phone_number = "+61280490602"
+		elif product_name == 'Mobile Broadband':
+			phone_number = "+61280490602"
+		elif product_name == 'Internet':
+			phone_number = "+61280490602"
+		elif product_name == 'Telephony':
+			phone_number = "+61280490602"
+		elif product_name == 'Optus TV':
+			phone_number = "+61280490602"
+		elif product_name == 'Financial Services':
+			phone_number = "+61280490602"
+			
+	# Transfer for relocation_services
+	if intent_name in ['relocation_services_cartwright','relocation_services_cartwright-getempnumber']:
+		if product_name == 'Postpaid':
+			phone_number = "+61280490602"
+		elif product_name == 'Prepaid':
+			phone_number = "+61280490602"
+		elif product_name == 'Mobile Broadband':
+			phone_number = "+61280490602"
+		elif product_name == 'Internet':
+			phone_number = "+61280490602"
+		elif product_name == 'Telephony':
+			phone_number = "+61280490602"
+		elif product_name == 'Optus TV':
+			phone_number = "+61280490600"
+		elif product_name == 'Financial Services':
+			phone_number = "+61280490602"
+	
 	return phone_number
 
 #####
@@ -406,7 +440,7 @@ def processRequest(req):
 			employee_name = get_employee_name(emp_id)
 			fulfillmentText = 'Ok ' + employee_name + '.Let me transfer you to one of my colleagues that can help you with your Sales inquiry'
 	
-	#Process employee number again pon user request to give employee number again
+	#Process employee number again on user request to give employee number again
 	if intentname == 'sales_services_cartwright-getempnumber':
 		if (str(int(emp_id))[:2]) != '10':
 			fulfillmentText = 'Sorry that still don’t not check out, perhaps you should chat with your manager. Would you like me to transfer you to one of my colleagues in the General Customer Service Team that can help you with your inquiry today.'
@@ -436,6 +470,46 @@ def processRequest(req):
 		
 	# Transfer to General customer care when user says ok for transfer post unsuccessful employee id check
 	if intentname == 'tech_services_cartwright-transfer':
+		fulfillmentText = 'My colleague in the General Customer Service Team will help you with your inquiry today.'
+		
+	# Transfer for retention_services
+    	if intentname == 'retention_services_cartwright':
+		if (str(int(emp_id))[:2]) != '10':
+			fulfillmentText = 'Hmmm! That does not seem to be a valid employee number. Care for me is for internal employees only. Would you like me to transfer you to one of my colleagues in the General Customer Service Team that can help you with your issue.'
+		else:
+			employee_name = get_employee_name(emp_id)
+			fulfillmentText = 'Ok ' + employee_name + '.Let me transfer you to one of my colleagues that can help you with your issue '
+	
+	#Process employee number again
+	if intentname == 'retention_services_cartwright-getempnumber':
+		if (str(int(emp_id))[:2]) != '10':
+			fulfillmentText = 'Sorry that still don’t not check out, perhaps you should chat with your manager. Would you like me to transfer you to one of my colleagues in the General Customer Service Team that can help you with your inquiry.'
+		else:
+			employee_name = get_employee_name(emp_id)
+			fulfillmentText = 'Thanks ' + employee_name + ' for providing your employee number. Let me transfer you to one of my colleagues that can help you with your issue today'
+		
+	# Transfer to General customer care when user says ok for transfer post unsuccessful employee id check
+	if intentname == 'retention_services_cartwright-transfer':
+		fulfillmentText = 'My colleague in the General Customer Service Team will help you with your issue.'
+		
+	# Transfer for relocation_services
+    	if intentname == 'relocation_services_cartwright':
+		if (str(int(emp_id))[:2]) != '10':
+			fulfillmentText = 'Hmmm! That does not seem to be a valid employee number. Care for me is for internal employees only. Would you like me to transfer you to one of my colleagues in the General Customer Service Team that can help you with your relocation request today.'
+		else:
+			employee_name = get_employee_name(emp_id)
+			fulfillmentText = 'Ok ' + employee_name + '.Let me transfer you to one of my colleagues that can help you with your relocation request'
+	
+	#Process employee number again
+	if intentname == 'relocation_services_cartwright-getempnumber':
+		if (str(int(emp_id))[:2]) != '10':
+			fulfillmentText = 'Sorry that still don’t not check out, perhaps you should chat with your manager. Would you like me to transfer you to one of my colleagues in the General Customer Service Team that can help you with your relocation request today.'
+		else:
+			employee_name = get_employee_name(emp_id)
+			fulfillmentText = 'Thanks ' + employee_name + ' for providing your employee number. Let me transfer you to one of my colleagues that can help you with your relocation request'
+		
+	# Transfer to General customer care when user says ok for transfer post unsuccessful employee id check
+	if intentname == 'relocation_services_cartwright-transfer':
 		fulfillmentText = 'My colleague in the General Customer Service Team will help you with your inquiry today.'
 			
     	# Transfer to General services if employee number is not provided
