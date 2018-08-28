@@ -541,6 +541,14 @@ def get_employee_name(emp_id):
 		employee_name = 'Paul'
 	elif str(int(emp_id)) == '1088430':
 		employee_name = 'Cameron'
+	elif str(int(emp_id)) == '1055305':
+		employee_name = 'Sasha'
+	elif str(int(emp_id)) == '1047043':
+		employee_name = 'Mark'
+	elif str(int(emp_id)) == '1055886':
+		employee_name = 'Chris'
+	elif str(int(emp_id)) == '1052485':
+		employee_name = 'Emma'
 	else:
 		employee_name = ''
 		
