@@ -64,7 +64,9 @@ def welcome():
 		session = session_client.session_path(project_id, call_id)
 		event_input = dialogflow.types.EventInput(name='Welcome', language_code=lang_code)
 		query_input = dialogflow.types.QueryInput(event=event_input)
-		query_parameter = dialogflow.types.QueryParameters(payload={"service" : "wireline"})
+		data = {"service" : wireline}
+		json_data = json.dumps(data)
+		query_parameter = dialogflow.types.QueryParameters(payload=json_data)
 		response = session_client.detect_intent(session=session, query_input=query_input,query_params=query_parameter)
 		print response	
 		output_text = response.query_result.fulfillment_text
